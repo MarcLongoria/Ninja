@@ -1,0 +1,2 @@
+# Ninja
+EF Core
