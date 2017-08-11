@@ -8,9 +8,10 @@ using SamuraiAppCore.Data;
 namespace SamuraiAppCore.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20170811035123_JoinTable")]
+    partial class JoinTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -79,23 +80,6 @@ namespace SamuraiAppCore.Data.Migrations
                     b.ToTable("SamuraiBattle");
                 });
 
-            modelBuilder.Entity("SamuraiAppCore.Domain.SecretIdentity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("RealName");
-
-                    b.Property<int>("SamuraiId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId")
-                        .IsUnique();
-
-                    b.ToTable("SecretIdentity");
-                });
-
             modelBuilder.Entity("SamuraiAppCore.Domain.Quote", b =>
                 {
                     b.HasOne("SamuraiAppCore.Domain.Samurai", "Samurai")
@@ -121,14 +105,6 @@ namespace SamuraiAppCore.Data.Migrations
                     b.HasOne("SamuraiAppCore.Domain.Samurai", "Samurai")
                         .WithMany()
                         .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SamuraiAppCore.Domain.SecretIdentity", b =>
-                {
-                    b.HasOne("SamuraiAppCore.Domain.Samurai", "Samurai")
-                        .WithOne("SecretIdentity")
-                        .HasForeignKey("SamuraiAppCore.Domain.SecretIdentity", "SamuraiId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

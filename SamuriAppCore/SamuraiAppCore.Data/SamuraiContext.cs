@@ -14,6 +14,15 @@ namespace SamuraiAppCore.Data
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Samurai> Samurais { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>()
+                .HasKey(s => new { s.BattleID, s.SamuraiId });
+
+            //modelBuilder.Entity<Samurai>()
+            //    .Property(s => s.SecretIdentity).IsRequired();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server= (localdb)\\mssqllocaldb; Database = SamuraiDataCore; Trusted_Connection = True;");
