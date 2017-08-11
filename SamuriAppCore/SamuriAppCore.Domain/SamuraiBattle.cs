@@ -9,8 +9,9 @@ namespace SamuraiAppCore.Domain
     public class SamuraiBattle
     {
         public int SamuraiId { get; set; }
-        public int BattleID { get; set; }
         public Samurai Samurai { get; set; }
+        public int BattleId { get; set; }
         public Battle Battle { get; set; }
+
     }
 }
